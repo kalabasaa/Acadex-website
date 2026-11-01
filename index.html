@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acadex – Your class schedule, tasks and reminders in one app</title>
+  <meta name="description" content="Acadex is a student companion app for Android. Keep class schedules, tasks, reminders, the campus map and announcements in one place.">
+  <meta name="theme-color" content="#f6f8fd">
+  <meta property="og:title" content="Acadex – a student companion app for Android">
+  <meta property="og:description" content="Class schedules, tasks, reminders, campus map and announcements in one place.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+
+  <!-- Shared blob shapes: one <path> per shape, reused everywhere with <use>.
+       Each place that draws a blob only sets its own size/colour/position/
+       rotation in CSS — the shape itself lives here, once. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <path id="blob-a" d="M100,15 C130,15 162,28 178,55 C194,82 190,118 172,145 C154,172 122,188 92,185 C62,182 34,163 20,136 C6,109 8,74 26,50 C44,26 70,15 100,15 Z"/>
+      <path id="blob-b" d="M95,10 C125,5 158,20 172,48 C186,76 184,112 164,138 C144,164 108,180 76,174 C44,168 18,144 10,112 C2,80 12,44 38,24 C52,13 70,13 95,10 Z"/>
+      <path id="blob-c" d="M60,30 C90,10 135,8 162,32 C189,56 196,98 180,130 C164,162 124,184 88,180 C52,176 20,150 12,116 C4,82 20,54 60,30 Z"/>
+      <path id="blob-d" d="M100,30 C128,30 152,52 158,80 C164,108 150,138 124,154 C98,170 66,170 42,152 C18,134 8,104 16,76 C24,48 50,30 72,30 C78,30 90,30 100,30 Z"/>
+    </defs>
+  </svg>
+
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="#top" aria-label="Acadex home">
+        <img src="assets/acadex-logo.png" alt="Acadex" height="34">
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+      <div class="nav-backdrop"></div>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#install">Install</a>
+        <a href="#docs">Docs</a>
+        <a class="nav-download" href="#download">Download</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <!-- decorative blobs, varied shapes/sizes/shades of blue -->
+      <svg class="blob blob-1" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-a"/></svg>
+      <svg class="blob blob-2" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-b"/></svg>
+      <svg class="blob blob-7" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-c"/></svg>
+      <svg class="blob blob-8" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-d"/></svg>
+      <svg class="blob blob-9" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-a"/></svg>
+      <svg class="circle-accent circle-1" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48"/></svg>
+      <svg class="circle-accent circle-2" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48"/></svg>
+      <span class="dots" aria-hidden="true"></span>
+
+      <div class="wrap hero-grid">
+        <div class="hero-text">
+          <p class="scribble">Stay ahead, stay calm</p>
+          <p class="eyebrow"><span class="pill">Student companion</span> for Android</p>
+          <h1>Run your whole semester from one app.</h1>
+          <p class="rule-caption"><span class="rule"></span>Classes, tasks and reminders, together</p>
+          <p class="lead">Check today's classes, track assignments and exams, set reminders and find your way around campus. Acadex keeps it all on your phone.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#download">Download Acadex v2.1</a>
+            <a class="text-link" href="#install">How to install</a>
+          </div>
+          <p class="fine">Android 7.0 and newer. Installed from an APK file, not through Google Play.</p>
+        </div>
+
+        <div class="hero-art">
+          <!-- Phone frame: drop a real screenshot in assets/screens/hero.png -->
+          <div class="phone-frame img-frame">
+            <img src="assets/screens/hero.jpg" alt="Acadex home screen on a phone" loading="eager">
+            <div class="placeholder" aria-hidden="true">
+              <span>Your screenshot goes here</span>
+              <small>assets/screens/hero.jpg</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROMO BANNER -->
+    <section class="promo">
+      <span class="promo-texture" aria-hidden="true"></span>
+      <div class="wrap promo-row">
+        <div>
+          <p class="promo-label">Free · Offline · Open source</p>
+          <h2>One app, your whole school week sorted.</h2>
+        </div>
+        <a class="btn btn-light" href="#download">Get Acadex</a>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section" id="features">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Features</p>
+          <h2>What you can do with Acadex</h2>
+        </div>
+
+        <div class="icon-cards">
+          <div class="icon-card reveal">
+            <span class="icon-badge badge-a" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5,5 L19,5 A2,2 0 0 1 21,7 L21,19 A2,2 0 0 1 19,21 L5,21 A2,2 0 0 1 3,19 L3,7 A2,2 0 0 1 5,5 Z M3,10 L21,10 M8,3 L8,7 M16,3 L16,7"/></svg>
+            </span>
+            <h3>Weekly schedule</h3>
+            <p>Classes from Monday to Sunday, marked online or onsite, with the room or meeting link.</p>
+          </div>
+          <div class="icon-card reveal">
+            <span class="icon-badge badge-b" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M9,11 L12,14 L19,6 M20,12 L20,18 A2,2 0 0 1 18,20 L6,20 A2,2 0 0 1 4,18 L4,6 A2,2 0 0 1 6,4 L15,4"/></svg>
+            </span>
+            <h3>Tasks and exams</h3>
+            <p>Assignments, projects, quizzes and exams with a due date and a status you can change.</p>
+          </div>
+          <div class="icon-card reveal">
+            <span class="icon-badge badge-c" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M6,16 L6,11 A6,6 0 0 1 18,11 L18,16 L19.5,18.5 L4.5,18.5 Z M10,21.5 L14,21.5 M12,3 L12,5"/></svg>
+            </span>
+            <h3>Reminders</h3>
+            <p>Tomorrow's classes and unfinished tasks, plus reminders you add yourself with a switch.</p>
+          </div>
+        </div>
+
+        <ul class="also">
+          <li><strong>Subjects</strong><span>Codes and professors kept with their classes.</span></li>
+          <li><strong>Campus map</strong><span>Zoom around and search buildings and rooms.</span></li>
+          <li><strong>Announcements</strong><span>School news inside the app when online.</span></li>
+          <li><strong>Easy schedule import</strong><span>Let an AI app type it from a photo, checked before saving.</span></li>
+          <li><strong>Works offline</strong><span>Your schedule stays on your phone, no connection needed.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section band-soft" id="about">
+      <svg class="blob blob-3" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-b"/></svg>
+      <svg class="blob blob-5" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-c"/></svg>
+      <svg class="blob blob-6" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-d"/></svg>
+      <svg class="blob blob-10" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-a"/></svg>
+      <svg class="circle-accent about-circle-1" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48"/></svg>
+      <svg class="circle-accent about-circle-2" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48"/></svg>
+      <svg class="circle-accent about-circle-3" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48"/></svg>
+
+      <div class="wrap about-grid">
+        <div class="about-frame img-frame">
+          <img src="assets/images/about.jpg" alt="A student using Acadex to plan their week" loading="lazy">
+          <div class="placeholder" aria-hidden="true">
+            <span>Your image goes here</span>
+            <small>assets/images/about.jpg</small>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-head">
+            <p class="kicker">About</p>
+            <h2>Why Acadex exists</h2>
+          </div>
+          <p>Acadex is a student companion application designed to make academic life more organized and manageable. It brings together class schedules, subject information, academic activities, reminders, campus maps, and online announcements in one place.</p>
+          <p>Built to give students a convenient way to keep track of their academic responsibilities and stay informed throughout the semester. Acadex is developed by Kalabasaa as a tool to help him and other students manage their schedules, tasks, and reminders.</p>
+          <p>Follow Kalabasaa on GitHub for more projects, updates, and future improvements: <a href="https://github.com/kalabasaa" rel="noopener">github.com/kalabasaa</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD -->
+    <section class="section" id="download">
+      <div class="wrap download-grid">
+        <div>
+          <p class="kicker">Download</p>
+          <h2>Get Acadex v2.1</h2>
+          <p>Hey there! Thanks for checking out Acadex! We're glad to have you here. If you're ready to give it a try, follow the installation steps below to get started on your Android device.</p>
+          <p>This update brings new features, improvements, and a smoother experience. Acadex is still growing, so you might run into a few things that need polishing. Your feedback is always welcome!</p>
+          <!-- When you have a direct link to the APK file, put it in this href. -->
+          <a class="btn btn-primary" href="https://github.com/kalabasaa/Acadex/releases/latest" rel="noopener">Download acadex-v2.1.apk</a>
+          <p class="fine">The button opens the latest release on GitHub. Download <strong>acadex-v2.1.apk</strong> from its Assets section.</p>
+        </div>
+        <div class="whats-new">
+          <h3>What's new in v2.1</h3>
+          <ul>
+            <li>Added Map and Settings pages.</li>
+            <li>Added an interactive SVG campus map.</li>
+            <li>Improved the Map Directory.</li>
+            <li>Added online announcements.</li>
+            <li>Added name personalization.</li>
+            <li>Simplified schedule importing.</li>
+            <li>Improved UI and animations.</li>
+            <li>Added Terms and Conditions.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSTALL STEPS -->
+    <section class="section band-soft" id="install">
+      <span class="soft-texture" aria-hidden="true"></span>
+      <div class="wrap narrow">
+        <div class="section-head">
+          <p class="kicker">Install</p>
+          <h2>How to install</h2>
+        </div>
+        <p class="section-intro">Six steps on your Android phone.</p>
+        <ol class="steps">
+          <li>
+            <h3>Open the Assets section</h3>
+            <p>Tap the download button above. On the GitHub release page, scroll down to <strong>Assets</strong>.</p>
+          </li>
+          <li>
+            <h3>Download the APK</h3>
+            <p>Tap <strong>acadex-v2.1.apk</strong>. If your browser warns that this type of file can be harmful, choose to keep it.</p>
+          </li>
+          <li>
+            <h3>Open the downloaded file</h3>
+            <p>Open the APK from your browser's download notice or from the Downloads folder in your Files app.</p>
+          </li>
+          <li>
+            <h3>Let your phone scan it</h3>
+            <p>Your phone checks the app for viruses. Let it scan. Acadex has nothing to hide.</p>
+          </li>
+          <li>
+            <h3>Allow installation if asked</h3>
+            <p>If your phone asks, allow installing apps from this source. You can turn it off again after installing.</p>
+          </li>
+          <li>
+            <h3>Tap Install</h3>
+            <p>Tap <strong>Install</strong>, then <strong>Open</strong>. You're all set.</p>
+          </li>
+        </ol>
+        <p class="note">Acadex is still under development. Some features may change or receive further improvements in future updates.</p>
+      </div>
+    </section>
+
+    <!-- DOCUMENTATION -->
+    <section class="section" id="docs">
+      <div class="wrap narrow">
+        <div class="docs-head">
+          <div class="section-head" style="margin-bottom:0">
+            <p class="kicker">Docs</p>
+            <h2>Using Acadex</h2>
+          </div>
+          <button class="link-btn" type="button" id="toggle-docs">Expand all</button>
+        </div>
+        <p class="section-intro">Short guides for each part of the app. Tap a topic to open it.</p>
+
+        <div class="docs">
+          <details id="doc-start">
+            <summary><span>Getting started</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6,9 L12,15 L18,9"/></svg></summary>
+            <div class="doc-body">
+              <ol>
+                <li>Open <strong>Settings</strong> and type your name. The Home page will greet you with it.</li>
+                <li>Add your subjects first. Classes and tasks belong to a subject.</li>
+                <li>Add each weekly class, then your tasks and reminders.</li>
+              </ol>
+              <p>The blue <strong>+</strong> button lets you add a subject, a schedule, a task or a reminder. The icons at the bottom switch between Home, Calendar, Map, Reminders and Settings. The icon of the page you are on turns blue.</p>
+            </div>
+          </details>
+
+          <details id="doc-subject">
+            <summary><span>Add a subject</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6,9 L12,15 L18,9"/></svg></summary>
+            <div class="doc-body">
+              <p>Tap <strong>+</strong>, then <strong>Add subject</strong>. The subject name and code are required, and every code must be different. The professor is optional.</p>
+              <p>Tap a subject on Home to see its classes and tasks, edit it, or delete it. Deleting a subject also deletes its classes.</p>
+            </div>
+          </details>
+
+          <details id="doc-schedule">
+            <summary><span>Set your weekly class schedule</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6,9 L12,15 L18,9"/></svg></summary>
+            <div class="doc-body">
+              <p>Tap <strong>+</strong>, then <strong>Add schedule</strong>, or use <strong>+ Add</strong> inside a subject.</p>
+              <ol>
+                <li>Pick the subject and the day.</li>
+                <li>Pick the start and end time. The end must be later than the start.</li>
+                <li>Choose <strong>Onsite</strong> and enter the room, or choose <strong>Online</strong> and enter the link or platform.</li>
+              </ol>
+              <p>Each entry is one weekly meeting. A subject that meets on Monday and Wednesday needs two entries. Today's classes appear on Home.</p>
+            </div>
+          </details>
+
+          <details id="doc-tasks">
+            <summary><span>Track assignments, projects, quizzes and exams</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6,9 L12,15 L18,9"/></svg></summary>
+            <div class="doc-body">
+              <p>Tap <strong>+</strong>, then <strong>Add task</strong>. Choose a subject (optional), write a title, and pick the type: Assignment, Project, Quiz or Exam.</p>
+              <p>Add a due date and, if you want, a due time and a description. A task starts as Pending. Open it any time to change its status to In Progress, Finished or Missed.</p>
+            </div>
+          </details>
+
+          <details id="doc-calendar">
+            <summary><span>Use the calendar</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6,9 L12,15 L18,9"/></svg></summary>
+            <div class="doc-body">
+              <p>Tap a date to see the classes that meet on that weekday and the tasks due on that date. Tap <strong>Show all</strong> to list every task.</p>
+              <p>Tap a task to open its details, where you can read the full description, change its status or edit it.</p>
+            </div>
+          </details>
+
+          <details id="doc-reminders">
+            <summary><span>Reminders and announcements</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6,9 L12,15 L18,9"/></svg></summary>
+            <div class="doc-body">
+              <p>The <strong>Reminders</strong> page shows tomorrow's schedule, the tasks still to be finished, and online announcements from the school.</p>
+              <p>You can also add your own reminder with <strong>+</strong>. Pick a class or a task, write a title, and choose a date and time. Use the switch on a reminder to turn it on or off.</p>
+            </div>
+          </details>
+
+          <details id="doc-map">
+            <summary><span>Find places on campus</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6,9 L12,15 L18,9"/></svg></summary>
+            <div class="doc-body">
+              <p>Open <strong>Map</strong> to see the campus map. Pinch to zoom, drag to move around, and double-tap to zoom in or out.</p>
+              <p>Below the map, search the campus locations and guide, or look up what a college abbreviation stands for.</p>
+            </div>
+          </details>
+
+          <details id="doc-import">
+            <summary><span>Import a schedule with an AI app</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6,9 L12,15 L18,9"/></svg></summary>
+            <div class="doc-body">
+              <p>Acadex does not use AI itself. This feature lets you borrow any AI app to type your schedule for you.</p>
+              <ol>
+                <li>Open <strong>Settings</strong> and tap <strong>Copy AI prompt</strong>.</li>
+                <li>Open any AI app. Paste the prompt and attach a clear photo or screenshot of your schedule.</li>
+                <li>The AI replies with SQL. Copy only the SQL code block.</li>
+                <li>Back in Acadex, paste it into the box and tap <strong>Check</strong>. Nothing is saved yet.</li>
+                <li>If the check passes, tap <strong>Import</strong>.</li>
+              </ol>
+              <p>If Check shows an error, tap <strong>Copy error for AI</strong>, send it to the AI, and paste the corrected SQL. Acadex only accepts commands that add subjects, classes and tasks, and it rejects anything else.</p>
+              <p>For better results, use a sharp, straight image with every column visible, and crop out everything that is not the schedule. Importing twice adds your classes twice, so delete your schedules first if you want to start over.</p>
+            </div>
+          </details>
+
+          <details id="doc-delete">
+            <summary><span>Delete your schedules or tasks</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6,9 L12,15 L18,9"/></svg></summary>
+            <div class="doc-body">
+              <p>In <strong>Settings</strong> you can clear your data. Both actions ask you to confirm, and neither can be undone.</p>
+              <ul>
+                <li><strong>Delete all schedules</strong> removes every subject, class schedule and task, plus their reminders.</li>
+                <li><strong>Delete all tasks</strong> removes only tasks and their reminders. Your subjects and class schedules stay.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details id="doc-help">
+            <summary><span>Troubleshooting</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6,9 L12,15 L18,9"/></svg></summary>
+            <div class="doc-body">
+              <dl>
+                <dt>My phone will not let me install the app.</dt>
+                <dd>Allow installing apps from the source you downloaded it with, such as your browser or Files app. The prompt usually has a Settings button that takes you there.</dd>
+                <dt>My phone says it is scanning the app.</dt>
+                <dd>That is the built-in virus check. Wait for it to finish, then continue.</dd>
+                <dt>Do I need internet to use Acadex?</dt>
+                <dd>No. Your schedule is saved on your phone. Only online announcements need a connection.</dd>
+                <dt>I found a problem or have a suggestion.</dt>
+                <dd>Acadex is still growing and feedback is welcome. Message Kalabasaa through <a href="https://github.com/kalabasaa" rel="noopener">GitHub</a>.</dd>
+              </dl>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <svg class="blob blob-4" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-c"/></svg>
+    <svg class="blob blob-11" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-d"/></svg>
+    <svg class="circle-accent footer-circle-1" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48"/></svg>
+    <svg class="circle-accent footer-circle-2" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48"/></svg>
+    <div class="wrap">
+      <p class="tagline"><span class="t1">Plan.</span> <span class="t2">Track.</span> <span class="t3">Succeed.</span></p>
+      <p class="tagline-caption">A calmer way to get through the semester</p>
+      <div class="footer-row">
+        <p><strong>Acadex</strong> is made by <a href="https://github.com/kalabasaa" rel="noopener">Kalabasaa</a>.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

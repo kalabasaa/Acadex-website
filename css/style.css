@@ -1,0 +1,484 @@
+/* Acadex website — friendly, clean, modern.
+   Reference: an illustrated "mobile studio" moodboard (organic blob shapes,
+   pill badges, bold headlines, icon-circle feature cards, a bold closing
+   tagline). Adapted here in several shades of blue instead of the original
+   terracotta/green, on a soft blue-white page. */
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../assets/fonts/poppins-regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("../assets/fonts/poppins-bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #f6f8fd;
+  --surface: #eef2fb;
+  --ink: #0f1f3d;          /* deepest navy — headings & nav */
+  --blue-deep: #15306b;    /* darker accent blue, for contrast against light blobs */
+  --blue: #2457c9;         /* primary — buttons & links */
+  --blue-mid: #5f8be8;     /* mid blue, between primary and light */
+  --blue-light: #8fb2f2;   /* soft accent — blobs & icon fills */
+  --blue-pale: #dde8fc;    /* tint, pill/badge backgrounds */
+  --muted: #5b6477;
+  --line: #e2e7f4;
+  --radius: 0.85rem;
+  --script: "Caveat", cursive;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--bg);
+}
+body.nav-open { overflow: hidden; }
+
+img { max-width: 100%; height: auto; }
+a { color: var(--blue); }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+
+.skip {
+  position: absolute; left: 1rem; top: -4rem; z-index: 30;
+  background: var(--ink); color: #fff;
+  padding: 0.5rem 1rem; border-radius: var(--radius);
+}
+.skip:focus { top: 1rem; }
+
+/* ---------- layout helpers ---------- */
+.wrap { position: relative; z-index: 1; width: min(100% - 2.5rem, 64rem); margin-inline: auto; }
+.wrap.narrow { width: min(100% - 2.5rem, 42rem); }
+.band-soft { background: var(--surface); }
+
+/* ---------- decorative blobs ----------
+   Shapes live once in the <svg><defs> sprite in index.html (#blob-a/b/c/d)
+   and are reused everywhere with <use>. Each instance below only sets size,
+   colour, position, rotation and opacity, so the same four shapes can be
+   mixed and matched freely across sections without duplicating path data. */
+/* --pz is written by script.js on scroll (hero & about only) to pin the
+   shape at a constant position in the viewport, like looking through a
+   window, while the section scrolls past underneath it. --rot keeps each
+   instance's own rotation working alongside that pin. Sections that don't
+   get the pin script (features, footer) simply keep --pz at its 0px default. */
+.blob {
+  position: absolute; z-index: 0; pointer-events: none;
+  transform: translateY(var(--pz, 0px)) rotate(var(--rot, 0deg));
+  will-change: transform;
+}
+
+/* hero */
+.blob-1 { width: 15rem; top: -4rem; right: -3rem; fill: var(--blue-pale); opacity: 0.9; }
+.blob-2 { width: 9rem; top: 6.5rem; right: 11rem; fill: var(--blue); opacity: 0.16; --rot: 12deg; }
+.blob-7 { width: 6rem; bottom: 1.5rem; left: 4%; fill: var(--blue-deep); opacity: 0.12; --rot: 50deg; }
+.blob-8 { width: 10.5rem; bottom: -4.5rem; right: 20%; fill: var(--blue-mid); opacity: 0.22; --rot: -30deg; }
+.blob-9 { width: 4.5rem; top: 1.5rem; left: 16%; fill: var(--blue-light); opacity: 0.3; --rot: 95deg; }
+
+/* perfect circles — plain round accents, distinct from the organic blobs */
+.circle-accent {
+  position: absolute; z-index: 0; pointer-events: none;
+  transform: translateY(var(--pz, 0px));
+  will-change: transform;
+}
+.circle-1 { width: 14rem; top: 1rem; left: -4rem; fill: var(--blue-mid); opacity: 0.28; }
+.circle-2 { width: 9rem; bottom: -1.5rem; right: 3rem; fill: var(--blue-deep); opacity: 0.2; }
+
+/* about & footer bubbles get a solid dark outline on top of the fill, so
+   they stay visible as a ring even where the fill color is close to the
+   section's own background */
+.about-circle-1, .about-circle-2, .about-circle-3,
+.footer-circle-1, .footer-circle-2 {
+  stroke: var(--ink);
+  stroke-width: 3;
+  stroke-opacity: 0.9;
+}
+
+/* about — 3 bubbles: 2 big, 1 small, pinned like the hero circles */
+.about-circle-1 { width: 10.5rem; top: 1.5rem; right: 4%; fill: var(--blue-deep); opacity: 0.65; }
+.about-circle-2 { width: 8.5rem; bottom: 2rem; left: 6%; fill: var(--ink); opacity: 0.5; }
+.about-circle-3 { width: 4.5rem; bottom: 3rem; left: 44%; fill: var(--blue-deep); opacity: 0.6; }
+
+/* footer bubbles — also positive offsets, fully inside the box */
+.footer-circle-1 { width: 8rem; top: 2rem; right: 6%; fill: var(--ink); opacity: 0.5; }
+.footer-circle-2 { width: 5rem; bottom: 2rem; left: 28%; fill: var(--blue-deep); opacity: 0.6; }
+
+/* about — all positioned with positive offsets so they sit fully inside
+   the section's own box, never clipped by overflow: hidden */
+.blob-3 { width: 11rem; top: 1.5rem; left: 2%; fill: var(--blue-light); opacity: 0.45; }
+.blob-5 { width: 7rem; bottom: 2rem; right: 3%; fill: var(--blue-deep); opacity: 0.12; --rot: 35deg; }
+.blob-6 { width: 6.5rem; top: 1rem; right: 18%; fill: var(--blue-pale); opacity: 0.8; --rot: -20deg; }
+.blob-10 { width: 3.5rem; bottom: 4rem; left: 26%; fill: var(--blue-mid); opacity: 0.22; --rot: 110deg; }
+
+/* footer — not pinned, scrolls normally; positive offsets so nothing
+   hangs off the bottom edge where overflow: hidden can clip it */
+.blob-4 { width: 13rem; bottom: 1rem; left: 2%; fill: var(--blue-pale); opacity: 0.8; }
+.blob-11 { width: 6rem; top: 1.5rem; right: 12%; fill: var(--blue); opacity: 0.12; --rot: 65deg; }
+
+.hero, .section, .site-footer { position: relative; overflow: hidden; }
+.dots {
+  position: absolute; z-index: 0; top: 4.5rem; left: 1rem;
+  width: 4rem; height: 4rem;
+  background-image: radial-gradient(var(--blue-light) 1.5px, transparent 1.5px);
+  background-size: 10px 10px;
+  opacity: 0.5;
+}
+
+/* ---------- type ---------- */
+h1, h2, h3 { margin: 0; font-weight: 700; color: var(--ink); }
+h1 {
+  font-size: clamp(2.1rem, 1.5rem + 3vw, 3.1rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+h2 { font-size: clamp(1.5rem, 1.3rem + 1vw, 1.9rem); line-height: 1.3; letter-spacing: -0.01em; }
+h3 { font-size: 1.05rem; line-height: 1.4; margin-bottom: 0.4rem; }
+p { margin: 0 0 1.1rem; max-width: 60ch; color: var(--ink); }
+.section-intro { color: var(--muted); margin-top: 0.5rem; }
+
+.kicker {
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--blue); margin: 0 0 0.5rem;
+}
+.section-head { margin-bottom: 1rem; }
+
+.scribble {
+  font-family: var(--script); font-size: 1.5rem; font-weight: 700;
+  color: var(--blue); margin: 0 0 0.5rem; transform: rotate(-2deg);
+  transform-origin: left center;
+}
+.eyebrow { display: flex; align-items: center; gap: 0.6rem; margin: 0 0 1.1rem; font-size: 0.9rem; color: var(--muted); }
+.pill {
+  display: inline-flex; align-items: center;
+  background: var(--blue-pale); color: var(--ink);
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.02em;
+  padding: 0.3rem 0.8rem; border-radius: 999px;
+}
+.rule-caption {
+  display: flex; align-items: center; gap: 0.6rem; margin: 1rem 0 0;
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted);
+}
+.rule { width: 2.25rem; height: 3px; background: var(--blue); border-radius: 2px; flex: none; }
+
+.lead { font-size: 1.05rem; color: var(--muted); margin-top: 1.1rem; }
+.fine { font-size: 0.85rem; color: var(--muted); margin-top: 0.9rem; }
+.note { margin-top: 1.5rem; color: var(--muted); font-size: 0.95rem; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+  min-height: 2.9rem; padding: 0 1.4rem;
+  border-radius: var(--radius);
+  font-weight: 600; font-size: 0.95rem;
+  text-decoration: none;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+.btn-primary { background: var(--blue); color: #fff; }
+.btn-primary:hover { background: #1d49ab; }
+.btn-light { background: #fff; color: var(--ink); }
+.btn-light:hover { transform: translateY(-2px); }
+.text-link { font-weight: 600; text-decoration: underline; }
+
+.link-btn {
+  font: inherit; font-size: 0.9rem; font-weight: 600;
+  color: var(--blue); background: none; border: 0; padding: 0.25rem 0;
+  text-decoration: underline; cursor: pointer;
+}
+
+/* ---------- header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.header-row { display: flex; align-items: center; justify-content: space-between; min-height: 4.25rem; }
+.brand img { height: 34px; width: auto; display: block; }
+
+/* hamburger button: three bars that morph into an X */
+.nav-toggle {
+  display: grid; place-items: center;
+  width: 2.5rem; height: 2.5rem;
+  background: none; border: 0; padding: 0; cursor: pointer;
+  position: relative; z-index: 21;
+}
+.bars { position: relative; width: 1.35rem; height: 0.95rem; }
+.bars span {
+  position: absolute; left: 0; width: 100%; height: 2px;
+  background: var(--ink); border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease, top 0.25s ease;
+}
+.bars span:nth-child(1) { top: 0; }
+.bars span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+.bars span:nth-child(3) { top: 100%; transform: translateY(-100%); }
+.nav-toggle[aria-expanded="true"] .bars span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .bars span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .bars span:nth-child(3) { top: 50%; transform: translateY(-50%) rotate(-45deg); }
+
+/* backdrop behind the sliding drawer */
+.nav-backdrop {
+  position: fixed; inset: 0; z-index: 19;
+  background: rgba(15, 31, 61, 0.4);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.nav-backdrop.open { opacity: 1; pointer-events: auto; }
+
+/* drawer: slides in from the right, covers half the screen */
+.site-nav {
+  position: fixed; top: 0; right: 0; z-index: 20;
+  width: 50%; height: 100%;
+  display: flex; flex-direction: column;
+  background: #fff;
+  padding: 5.5rem 2rem 2rem;
+  box-shadow: -8px 0 24px rgba(15, 31, 61, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.site-nav.open { transform: translateX(0); }
+.site-nav a { padding: 0.8rem 0; color: var(--ink); text-decoration: none; border-top: 1px solid var(--line); }
+.site-nav a:first-child { border-top: 0; }
+.site-nav a:hover { color: var(--blue); }
+
+/* Download is a pill button, not a plain link — same shape and vertical
+   centering at every width, so it never sits out of line with the rest. */
+.site-nav .nav-download {
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-top: 1.25rem; padding: 0.65rem 1.3rem;
+  background: var(--blue); color: #fff; font-weight: 600;
+  border-top: 0; border-radius: 999px; text-align: center;
+}
+.site-nav .nav-download:hover { background: #1d49ab; color: #fff; }
+
+/* ---------- sections ---------- */
+.section { padding-block: 3.5rem; }
+
+/* ---------- hero ---------- */
+.hero { padding-block: 3rem 3rem; }
+.hero-grid { display: grid; gap: 2.5rem; align-items: center; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 1.6rem; }
+
+.hero-art { position: relative; display: flex; justify-content: center; }
+.side-label {
+  display: none;
+  position: absolute; top: -2.25rem; right: 0;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+/* image frames: swap in real files, shown here as a placeholder until then */
+.img-frame { position: relative; overflow: hidden; background: var(--blue-pale); }
+.img-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.img-frame .placeholder {
+  position: absolute; inset: 0; z-index: 1;
+  display: none; flex-direction: column; align-items: center; justify-content: center; gap: 0.3rem;
+  text-align: center; padding: 1.5rem;
+  background: var(--blue-pale); color: var(--ink);
+}
+.img-frame.missing img { display: none; }
+.img-frame.missing .placeholder { display: flex; }
+.placeholder span { font-weight: 600; font-size: 0.9rem; }
+.placeholder small { font-size: 0.72rem; color: var(--muted); }
+
+.phone-frame {
+  width: min(16rem, 70vw);
+  aspect-ratio: 9 / 18.5;
+  border: 8px solid var(--ink);
+  border-radius: 2rem;
+}
+
+.about-frame {
+  width: 100%;
+  max-width: 24rem;
+  aspect-ratio: 4 / 3;
+  border-radius: 1.5rem;
+  margin-inline: auto;
+}
+
+/* ---------- promo banner ---------- */
+.promo { position: relative; overflow: hidden; background: var(--ink); color: #fff; padding-block: 2.25rem; }
+/* seigaiha — traditional Japanese nested-wave pattern, three rings of
+   concentric arcs per tile (center, left edge, right edge) so adjacent
+   tiles join into continuous scalloped rows. background-attachment: fixed
+   pins the pattern to the viewport, so it stays put while the promo text
+   scrolls over it. */
+.promo-texture {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image: url("../assets/images/wave.png");
+  background-size: 420px 420px;
+  background-attachment: fixed;
+  opacity: 0.8;
+  filter: brightness(0.55) saturate(1.2); /* darker, for the dark promo banner */
+}
+.promo-row { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 1.25rem; align-items: flex-start; }
+.promo-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue-light); margin: 0 0 0.4rem; }
+.promo h2 { color: #fff; margin: 0; max-width: 24ch; }
+
+/* ---------- icon feature cards ---------- */
+.icon-cards { display: grid; gap: 1.5rem; margin-top: 1.75rem; }
+.icon-card {
+  background: #fff; border-radius: 1.1rem;
+  padding: 1.5rem; box-shadow: 0 1px 2px rgba(15, 31, 61, 0.06);
+}
+.icon-badge {
+  display: grid; place-items: center;
+  width: 2.75rem; height: 2.75rem; border-radius: 50%;
+  margin-bottom: 1rem;
+}
+.icon-badge svg { width: 1.3rem; height: 1.3rem; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.badge-a { background: var(--blue-pale); } .badge-a svg { stroke: var(--blue); }
+.badge-b { background: var(--blue); } .badge-b svg { stroke: #fff; }
+.badge-c { background: var(--ink); } .badge-c svg { stroke: var(--blue-light); }
+.icon-card p { color: var(--muted); font-size: 0.92rem; margin: 0; }
+
+.also { list-style: none; margin: 2rem 0 0; padding: 1.5rem 0 0; border-top: 1px solid var(--line); display: grid; gap: 1.1rem; }
+.also li { display: flex; flex-direction: column; gap: 0.15rem; }
+.also strong { font-size: 0.95rem; }
+.also span { font-size: 0.88rem; color: var(--muted); }
+
+/* ---------- about ---------- */
+.about-grid { display: grid; gap: 2.25rem; }
+
+/* ---------- download ---------- */
+.download-grid { display: grid; gap: 2.5rem; }
+.whats-new ul { margin: 0; padding: 0; list-style: none; }
+.whats-new li {
+  position: relative; padding-left: 1.1rem; padding-block: 0.4rem;
+  font-size: 0.95rem; color: var(--muted);
+  border-top: 1px solid var(--line);
+}
+.whats-new li:first-of-type { border-top: 0; }
+.whats-new li::before { content: ""; position: absolute; left: 0; top: 1rem; width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--blue); }
+
+/* ---------- install steps ---------- */
+/* same seigaiha pattern, softened for the light surface behind Install,
+   and pinned with background-attachment: fixed so it stays still while
+   the steps scroll past it */
+.soft-texture {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image: url("../assets/images/wave.png");
+  background-size: 420px 420px;
+  background-attachment: fixed;
+  opacity: 0.28;
+  filter: brightness(1.3); /* lighter, soft against the pale install background */
+}
+#install .wrap { position: relative; z-index: 1; }
+.steps { list-style: none; counter-reset: step; margin: 1.75rem 0 0; padding: 0; display: grid; gap: 1.6rem; }
+.steps li { counter-increment: step; padding-left: 3rem; position: relative; }
+.steps li::before {
+  content: counter(step);
+  position: absolute; left: 0; top: 0.1rem;
+  display: grid; place-items: center;
+  width: 2rem; height: 2rem; border-radius: 50%;
+  background: var(--blue-pale); color: var(--blue);
+  font-weight: 700; font-size: 0.9rem;
+}
+.steps p { margin: 0.3rem 0 0; color: var(--muted); font-size: 0.95rem; }
+
+/* ---------- documentation ---------- */
+.docs-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.docs { margin-top: 1.5rem; }
+.docs details { border-top: 1px solid var(--line); }
+.docs details:last-child { border-bottom: 1px solid var(--line); }
+.docs summary {
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  padding: 1.1rem 0; font-weight: 600; font-size: 0.98rem; cursor: pointer; list-style: none;
+}
+.docs summary::-webkit-details-marker { display: none; }
+.docs summary:hover { color: var(--blue); }
+.chev {
+  flex: none; width: 1.15rem; height: 1.15rem;
+  fill: none; stroke: var(--blue); stroke-width: 2.25;
+  stroke-linecap: round; stroke-linejoin: round;
+  transition: transform 0.25s ease;
+}
+.docs details[open] .chev { transform: rotate(180deg); }
+.doc-body { padding: 0 0 1.4rem; color: var(--muted); font-size: 0.95rem; animation: settle 0.2s ease-out both; }
+.doc-body ol, .doc-body ul { margin: 0 0 1rem; padding-left: 1.3rem; max-width: 58ch; }
+.doc-body li { margin-bottom: 0.4rem; }
+.doc-body strong { color: var(--ink); }
+.doc-body dt { font-weight: 600; color: var(--ink); margin-top: 1rem; }
+.doc-body dt:first-child { margin-top: 0; }
+.doc-body dd { margin: 0.2rem 0 0; max-width: 58ch; }
+
+@keyframes settle { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* ---------- footer ---------- */
+.site-footer { background: var(--surface); padding-block: 3.5rem 2rem; margin-top: 1rem; }
+.tagline {
+  font-size: clamp(1.9rem, 1.5rem + 2vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em;
+  margin: 0 0 0.5rem; max-width: none;
+}
+.tagline .t1 { color: var(--ink); }
+.tagline .t2 { color: var(--blue); }
+.tagline .t3 { color: var(--blue-light); }
+.tagline-caption {
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 2rem;
+}
+.footer-row { padding-top: 1.5rem; border-top: 1px solid var(--line); text-align: center; }
+.site-footer .footer-row p { margin: 0 0 0.35rem; font-size: 0.85rem; color: var(--muted); max-width: none; }
+
+/* ---------- scroll reveal (only when JS runs) ---------- */
+.js .reveal { opacity: 0; transform: translateY(10px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.js .reveal.in { opacity: 1; transform: none; }
+
+/* ---------- wider screens ---------- */
+@media (min-width: 52rem) {
+  .nav-toggle, .nav-backdrop { display: none; }
+  .site-nav {
+    position: static; z-index: auto; width: auto; height: auto;
+    flex-direction: row; align-items: center; gap: 2rem;
+    background: none; padding: 0; box-shadow: none; transform: none; transition: none;
+  }
+  .site-nav a { padding: 0; border-top: 0; }
+  .site-nav .nav-download { margin-top: 0; padding: 0.55rem 1.2rem; }
+
+  .hero { padding-block: 4rem; }
+  .hero-grid { grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; }
+  .side-label { display: block; }
+
+  .promo-row { flex-direction: row; align-items: center; justify-content: space-between; }
+
+  .about-grid { grid-template-columns: 0.85fr 1.15fr; gap: 3.5rem; align-items: center; }
+
+  .icon-cards { grid-template-columns: repeat(3, 1fr); }
+  .also { grid-template-columns: repeat(3, 1fr); column-gap: 2rem; }
+
+  .download-grid { grid-template-columns: 1.3fr 0.7fr; gap: 4rem; }
+
+  .footer-row { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+  .site-footer .footer-row p { margin: 0; }
+}
+
+/* ---------- tablets: use the extra width before the full desktop layout ---------- */
+@media (min-width: 40rem) and (max-width: 51.99rem) {
+  .hero-grid { grid-template-columns: 1fr; justify-items: center; text-align: left; }
+  .hero-text { max-width: 34rem; }
+  .about-grid { grid-template-columns: 0.8fr 1fr; gap: 2.5rem; align-items: center; }
+  .icon-cards { grid-template-columns: repeat(2, 1fr); }
+  .also { grid-template-columns: repeat(2, 1fr); column-gap: 2rem; }
+  .download-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .reveal { opacity: 1; transform: none; }
+}
