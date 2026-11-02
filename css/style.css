@@ -1,8 +1,9 @@
 /* Acadex website — friendly, clean, modern.
-   Reference: an illustrated "mobile studio" moodboard (organic blob shapes,
-   pill badges, bold headlines, icon-circle feature cards, a bold closing
-   tagline). Adapted here in several shades of blue instead of the original
-   terracotta/green, on a soft blue-white page. */
+   Decorative shapes are plain circles (perfect, no organic blob paths) in
+   several shades of blue. A single seigaiha (circle-ring) texture runs
+   underneath every section from the promo banner through the footer,
+   pinned to the viewport so it reads as one continuous background rather
+   than a separate pattern per section. */
 
 @font-face {
   font-family: "Poppins";
@@ -22,12 +23,12 @@
 :root {
   --bg: #f6f8fd;
   --surface: #eef2fb;
-  --ink: #0f1f3d;          /* deepest navy — headings & nav */
-  --blue-deep: #15306b;    /* darker accent blue, for contrast against light blobs */
-  --blue: #2457c9;         /* primary — buttons & links */
-  --blue-mid: #5f8be8;     /* mid blue, between primary and light */
-  --blue-light: #8fb2f2;   /* soft accent — blobs & icon fills */
-  --blue-pale: #dde8fc;    /* tint, pill/badge backgrounds */
+  --ink: #0f1f3d;
+  --blue-deep: #15306b;
+  --blue: #2457c9;
+  --blue-mid: #5f8be8;
+  --blue-light: #8fb2f2;
+  --blue-pale: #dde8fc;
   --muted: #5b6477;
   --line: #e2e7f4;
   --radius: 0.85rem;
@@ -63,84 +64,65 @@ a { color: var(--blue); }
 }
 .skip:focus { top: 1rem; }
 
-/* ---------- layout helpers ---------- */
 .wrap { position: relative; z-index: 1; width: min(100% - 2.5rem, 64rem); margin-inline: auto; }
 .wrap.narrow { width: min(100% - 2.5rem, 42rem); }
 .band-soft { background: var(--surface); }
+#docs { background: var(--bg); }
 
-/* ---------- decorative blobs ----------
-   Shapes live once in the <svg><defs> sprite in index.html (#blob-a/b/c/d)
-   and are reused everywhere with <use>. Each instance below only sets size,
-   colour, position, rotation and opacity, so the same four shapes can be
-   mixed and matched freely across sections without duplicating path data. */
-/* --pz is written by script.js on scroll (hero & about only) to pin the
-   shape at a constant position in the viewport, like looking through a
-   window, while the section scrolls past underneath it. --rot keeps each
-   instance's own rotation working alongside that pin. Sections that don't
-   get the pin script (features, footer) simply keep --pz at its 0px default. */
-.blob {
-  position: absolute; z-index: 0; pointer-events: none;
-  transform: translateY(var(--pz, 0px)) rotate(var(--rot, 0deg));
-  will-change: transform;
-}
-
-/* hero */
-.blob-1 { width: 15rem; top: -4rem; right: -3rem; fill: var(--blue-pale); opacity: 0.9; }
-.blob-2 { width: 9rem; top: 6.5rem; right: 11rem; fill: var(--blue); opacity: 0.16; --rot: 12deg; }
-.blob-7 { width: 6rem; bottom: 1.5rem; left: 4%; fill: var(--blue-deep); opacity: 0.12; --rot: 50deg; }
-.blob-8 { width: 10.5rem; bottom: -4.5rem; right: 20%; fill: var(--blue-mid); opacity: 0.22; --rot: -30deg; }
-.blob-9 { width: 4.5rem; top: 1.5rem; left: 16%; fill: var(--blue-light); opacity: 0.3; --rot: 95deg; }
-
-/* perfect circles — plain round accents, distinct from the organic blobs */
-.circle-accent {
+.circle {
   position: absolute; z-index: 0; pointer-events: none;
   transform: translateY(var(--pz, 0px));
   will-change: transform;
 }
-.circle-1 { width: 14rem; top: 1rem; left: -4rem; fill: var(--blue-mid); opacity: 0.28; }
-.circle-2 { width: 9rem; bottom: -1.5rem; right: 3rem; fill: var(--blue-deep); opacity: 0.2; }
+.circle > svg { display: block; width: 100%; height: 100%; }
 
-/* about & footer bubbles get a solid dark outline on top of the fill, so
-   they stay visible as a ring even where the fill color is close to the
-   section's own background */
-.about-circle-1, .about-circle-2, .about-circle-3,
-.footer-circle-1, .footer-circle-2 {
+.circle-1 { width: 15rem; top: -4rem; right: -3rem; fill: var(--blue-pale); opacity: 0.9; }
+.circle-2 { width: 9rem; top: 6.5rem; right: 11rem; fill: var(--blue); opacity: 0.16; }
+.circle-3 { width: 6rem; bottom: 1.5rem; left: 4%; fill: var(--blue-deep); opacity: 0.14; }
+.circle-4 { width: 10.5rem; bottom: -4.5rem; right: 20%; fill: var(--blue-mid); opacity: 0.22; }
+.circle-5 { width: 4.5rem; top: 1.5rem; left: 16%; fill: var(--blue-light); opacity: 0.35; }
+.circle-6 { width: 14rem; top: 1rem; left: -4rem; fill: var(--blue-mid); opacity: 0.22; }
+.circle-7 { width: 9rem; bottom: -1.5rem; right: 3rem; fill: var(--blue-deep); opacity: 0.18; }
+
+.circle-8  { width: 10.5rem; top: 1.5rem; right: 4%; fill: var(--blue-deep); opacity: 0.55; }
+.circle-9  { width: 8.5rem; bottom: 2rem; left: 6%; fill: var(--ink); opacity: 0.4; }
+.circle-10 { width: 4.5rem; bottom: 3rem; left: 44%; fill: var(--blue-light); opacity: 0.5; }
+.circle-11 { width: 6.5rem; top: 1rem; right: 24%; fill: var(--blue-pale); opacity: 0.8; }
+
+.circle-12 { width: 13rem; bottom: 1rem; left: 2%; fill: var(--blue-mid); opacity: 0.3; }
+.circle-13 { width: 8rem; top: 2rem; right: 6%; fill: var(--blue-light); opacity: 0.22; }
+
+.circle-8, .circle-9, .circle-10 {
   stroke: var(--ink);
-  stroke-width: 3;
-  stroke-opacity: 0.9;
+  stroke-width: 2;
+  stroke-opacity: 0.5;
 }
-
-/* about — 3 bubbles: 2 big, 1 small, pinned like the hero circles */
-.about-circle-1 { width: 10.5rem; top: 1.5rem; right: 4%; fill: var(--blue-deep); opacity: 0.65; }
-.about-circle-2 { width: 8.5rem; bottom: 2rem; left: 6%; fill: var(--ink); opacity: 0.5; }
-.about-circle-3 { width: 4.5rem; bottom: 3rem; left: 44%; fill: var(--blue-deep); opacity: 0.6; }
-
-/* footer bubbles — also positive offsets, fully inside the box */
-.footer-circle-1 { width: 8rem; top: 2rem; right: 6%; fill: var(--ink); opacity: 0.5; }
-.footer-circle-2 { width: 5rem; bottom: 2rem; left: 28%; fill: var(--blue-deep); opacity: 0.6; }
-
-/* about — all positioned with positive offsets so they sit fully inside
-   the section's own box, never clipped by overflow: hidden */
-.blob-3 { width: 11rem; top: 1.5rem; left: 2%; fill: var(--blue-light); opacity: 0.45; }
-.blob-5 { width: 7rem; bottom: 2rem; right: 3%; fill: var(--blue-deep); opacity: 0.12; --rot: 35deg; }
-.blob-6 { width: 6.5rem; top: 1rem; right: 18%; fill: var(--blue-pale); opacity: 0.8; --rot: -20deg; }
-.blob-10 { width: 3.5rem; bottom: 4rem; left: 26%; fill: var(--blue-mid); opacity: 0.22; --rot: 110deg; }
-
-/* footer — not pinned, scrolls normally; positive offsets so nothing
-   hangs off the bottom edge where overflow: hidden can clip it */
-.blob-4 { width: 13rem; bottom: 1rem; left: 2%; fill: var(--blue-pale); opacity: 0.8; }
-.blob-11 { width: 6rem; top: 1.5rem; right: 12%; fill: var(--blue); opacity: 0.12; --rot: 65deg; }
 
 .hero, .section, .site-footer { position: relative; overflow: hidden; }
-.dots {
-  position: absolute; z-index: 0; top: 4.5rem; left: 1rem;
-  width: 4rem; height: 4rem;
-  background-image: radial-gradient(var(--blue-light) 1.5px, transparent 1.5px);
-  background-size: 10px 10px;
-  opacity: 0.5;
+
+
+/* ---------- background texture (promo & footer only) ----------
+   Features, About, Install and Docs have no texture-layer element at all
+   now — plain solid surface colour, like before. Download keeps the
+   lighter, non-pinned treatment. Promo and footer (the two dark sections)
+   get background-attachment: fixed for the parallax "window" feel. */
+.texture-layer {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image: url("../assets/images/wave.png");
+  background-size: 420px 420px;
+  opacity: 0.22;
+  filter: brightness(1.3);
+}
+.promo .texture-layer, .site-footer .texture-layer {
+  opacity: 0.85;
+  filter: brightness(0.6) saturate(1.2);
+  background-attachment: fixed;
+}
+#download .texture-layer {
+  background-attachment: fixed;
+  opacity: 0.05;
 }
 
-/* ---------- type ---------- */
 h1, h2, h3 { margin: 0; font-weight: 700; color: var(--ink); }
 h1 {
   font-size: clamp(2.1rem, 1.5rem + 3vw, 3.1rem);
@@ -181,7 +163,6 @@ p { margin: 0 0 1.1rem; max-width: 60ch; color: var(--ink); }
 .fine { font-size: 0.85rem; color: var(--muted); margin-top: 0.9rem; }
 .note { margin-top: 1.5rem; color: var(--muted); font-size: 0.95rem; }
 
-/* ---------- buttons ---------- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
   min-height: 2.9rem; padding: 0 1.4rem;
@@ -202,7 +183,6 @@ p { margin: 0 0 1.1rem; max-width: 60ch; color: var(--ink); }
   text-decoration: underline; cursor: pointer;
 }
 
-/* ---------- header ---------- */
 .site-header {
   position: sticky; top: 0; z-index: 10;
   background: var(--bg);
@@ -211,7 +191,6 @@ p { margin: 0 0 1.1rem; max-width: 60ch; color: var(--ink); }
 .header-row { display: flex; align-items: center; justify-content: space-between; min-height: 4.25rem; }
 .brand img { height: 34px; width: auto; display: block; }
 
-/* hamburger button: three bars that morph into an X */
 .nav-toggle {
   display: grid; place-items: center;
   width: 2.5rem; height: 2.5rem;
@@ -231,7 +210,6 @@ p { margin: 0 0 1.1rem; max-width: 60ch; color: var(--ink); }
 .nav-toggle[aria-expanded="true"] .bars span:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] .bars span:nth-child(3) { top: 50%; transform: translateY(-50%) rotate(-45deg); }
 
-/* backdrop behind the sliding drawer */
 .nav-backdrop {
   position: fixed; inset: 0; z-index: 19;
   background: rgba(15, 31, 61, 0.4);
@@ -240,7 +218,6 @@ p { margin: 0 0 1.1rem; max-width: 60ch; color: var(--ink); }
 }
 .nav-backdrop.open { opacity: 1; pointer-events: auto; }
 
-/* drawer: slides in from the right, covers half the screen */
 .site-nav {
   position: fixed; top: 0; right: 0; z-index: 20;
   width: 50%; height: 100%;
@@ -256,8 +233,6 @@ p { margin: 0 0 1.1rem; max-width: 60ch; color: var(--ink); }
 .site-nav a:first-child { border-top: 0; }
 .site-nav a:hover { color: var(--blue); }
 
-/* Download is a pill button, not a plain link — same shape and vertical
-   centering at every width, so it never sits out of line with the rest. */
 .site-nav .nav-download {
   display: inline-flex; align-items: center; justify-content: center;
   margin-top: 1.25rem; padding: 0.65rem 1.3rem;
@@ -266,10 +241,8 @@ p { margin: 0 0 1.1rem; max-width: 60ch; color: var(--ink); }
 }
 .site-nav .nav-download:hover { background: #1d49ab; color: #fff; }
 
-/* ---------- sections ---------- */
 .section { padding-block: 3.5rem; }
 
-/* ---------- hero ---------- */
 .hero { padding-block: 3rem 3rem; }
 .hero-grid { display: grid; gap: 2.5rem; align-items: center; }
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 1.6rem; }
@@ -282,7 +255,6 @@ p { margin: 0 0 1.1rem; max-width: 60ch; color: var(--ink); }
   color: var(--muted);
 }
 
-/* image frames: swap in real files, shown here as a placeholder until then */
 .img-frame { position: relative; overflow: hidden; background: var(--blue-pale); }
 .img-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .img-frame .placeholder {
@@ -306,31 +278,17 @@ p { margin: 0 0 1.1rem; max-width: 60ch; color: var(--ink); }
 .about-frame {
   width: 100%;
   max-width: 24rem;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 20 / 27.3; /* was 20/21 (4:3 + 40% taller); another +30% taller on top of that */
   border-radius: 1.5rem;
   margin-inline: auto;
 }
+.about-frame img { transform: scale(1.18); transform-origin: center; }
 
-/* ---------- promo banner ---------- */
 .promo { position: relative; overflow: hidden; background: var(--ink); color: #fff; padding-block: 2.25rem; }
-/* seigaiha — traditional Japanese nested-wave pattern, three rings of
-   concentric arcs per tile (center, left edge, right edge) so adjacent
-   tiles join into continuous scalloped rows. background-attachment: fixed
-   pins the pattern to the viewport, so it stays put while the promo text
-   scrolls over it. */
-.promo-texture {
-  position: absolute; inset: 0; z-index: 0; pointer-events: none;
-  background-image: url("../assets/images/wave.png");
-  background-size: 420px 420px;
-  background-attachment: fixed;
-  opacity: 0.8;
-  filter: brightness(0.55) saturate(1.2); /* darker, for the dark promo banner */
-}
 .promo-row { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 1.25rem; align-items: flex-start; }
 .promo-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue-light); margin: 0 0 0.4rem; }
 .promo h2 { color: #fff; margin: 0; max-width: 24ch; }
 
-/* ---------- icon feature cards ---------- */
 .icon-cards { display: grid; gap: 1.5rem; margin-top: 1.75rem; }
 .icon-card {
   background: #fff; border-radius: 1.1rem;
@@ -342,9 +300,8 @@ p { margin: 0 0 1.1rem; max-width: 60ch; color: var(--ink); }
   margin-bottom: 1rem;
 }
 .icon-badge svg { width: 1.3rem; height: 1.3rem; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.badge-a { background: var(--blue-pale); } .badge-a svg { stroke: var(--blue); }
-.badge-b { background: var(--blue); } .badge-b svg { stroke: #fff; }
-.badge-c { background: var(--ink); } .badge-c svg { stroke: var(--blue-light); }
+.badge-a, .badge-b, .badge-c { background: var(--blue-pale); }
+.badge-a svg, .badge-b svg, .badge-c svg { stroke: var(--blue); }
 .icon-card p { color: var(--muted); font-size: 0.92rem; margin: 0; }
 
 .also { list-style: none; margin: 2rem 0 0; padding: 1.5rem 0 0; border-top: 1px solid var(--line); display: grid; gap: 1.1rem; }
@@ -352,10 +309,8 @@ p { margin: 0 0 1.1rem; max-width: 60ch; color: var(--ink); }
 .also strong { font-size: 0.95rem; }
 .also span { font-size: 0.88rem; color: var(--muted); }
 
-/* ---------- about ---------- */
 .about-grid { display: grid; gap: 2.25rem; }
 
-/* ---------- download ---------- */
 .download-grid { display: grid; gap: 2.5rem; }
 .whats-new ul { margin: 0; padding: 0; list-style: none; }
 .whats-new li {
@@ -366,19 +321,6 @@ p { margin: 0 0 1.1rem; max-width: 60ch; color: var(--ink); }
 .whats-new li:first-of-type { border-top: 0; }
 .whats-new li::before { content: ""; position: absolute; left: 0; top: 1rem; width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--blue); }
 
-/* ---------- install steps ---------- */
-/* same seigaiha pattern, softened for the light surface behind Install,
-   and pinned with background-attachment: fixed so it stays still while
-   the steps scroll past it */
-.soft-texture {
-  position: absolute; inset: 0; z-index: 0; pointer-events: none;
-  background-image: url("../assets/images/wave.png");
-  background-size: 420px 420px;
-  background-attachment: fixed;
-  opacity: 0.28;
-  filter: brightness(1.3); /* lighter, soft against the pale install background */
-}
-#install .wrap { position: relative; z-index: 1; }
 .steps { list-style: none; counter-reset: step; margin: 1.75rem 0 0; padding: 0; display: grid; gap: 1.6rem; }
 .steps li { counter-increment: step; padding-left: 3rem; position: relative; }
 .steps li::before {
@@ -391,7 +333,6 @@ p { margin: 0 0 1.1rem; max-width: 60ch; color: var(--ink); }
 }
 .steps p { margin: 0.3rem 0 0; color: var(--muted); font-size: 0.95rem; }
 
-/* ---------- documentation ---------- */
 .docs-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 .docs { margin-top: 1.5rem; }
 .docs details { border-top: 1px solid var(--line); }
@@ -419,27 +360,24 @@ p { margin: 0 0 1.1rem; max-width: 60ch; color: var(--ink); }
 
 @keyframes settle { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
-/* ---------- footer ---------- */
-.site-footer { background: var(--surface); padding-block: 3.5rem 2rem; margin-top: 1rem; }
+.site-footer { background: var(--ink); color: #fff; padding-block: 3.5rem 2rem; margin-top: 1rem; }
 .tagline {
   font-size: clamp(1.9rem, 1.5rem + 2vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em;
   margin: 0 0 0.5rem; max-width: none;
+  text-align: center;
 }
-.tagline .t1 { color: var(--ink); }
-.tagline .t2 { color: var(--blue); }
-.tagline .t3 { color: var(--blue-light); }
+.tagline .t1, .tagline .t2, .tagline .t3 { color: #fff; }
 .tagline-caption {
   font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--muted); margin: 0 0 2rem;
+  color: #fff; margin: 0 0 2rem; max-width: none; text-align: center;
 }
-.footer-row { padding-top: 1.5rem; border-top: 1px solid var(--line); text-align: center; }
-.site-footer .footer-row p { margin: 0 0 0.35rem; font-size: 0.85rem; color: var(--muted); max-width: none; }
+.footer-row { padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.15); text-align: center; }
+.site-footer .footer-row p { margin: 0 0 0.35rem; font-size: 0.85rem; color: rgba(255, 255, 255, 0.65); max-width: none; }
+.site-footer .footer-row a { color: var(--blue-light); }
 
-/* ---------- scroll reveal (only when JS runs) ---------- */
 .js .reveal { opacity: 0; transform: translateY(10px); transition: opacity 0.5s ease, transform 0.5s ease; }
 .js .reveal.in { opacity: 1; transform: none; }
 
-/* ---------- wider screens ---------- */
 @media (min-width: 52rem) {
   .nav-toggle, .nav-backdrop { display: none; }
   .site-nav {
@@ -467,7 +405,6 @@ p { margin: 0 0 1.1rem; max-width: 60ch; color: var(--ink); }
   .site-footer .footer-row p { margin: 0; }
 }
 
-/* ---------- tablets: use the extra width before the full desktop layout ---------- */
 @media (min-width: 40rem) and (max-width: 51.99rem) {
   .hero-grid { grid-template-columns: 1fr; justify-items: center; text-align: left; }
   .hero-text { max-width: 34rem; }
@@ -475,6 +412,17 @@ p { margin: 0 0 1.1rem; max-width: 60ch; color: var(--ink); }
   .icon-cards { grid-template-columns: repeat(2, 1fr); }
   .also { grid-template-columns: repeat(2, 1fr); column-gap: 2rem; }
   .download-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+}
+
+@media (max-width: 39.99rem) {
+  .hero .circle { width: 5.5rem; }
+  .circle-1 { width: 7rem; top: -1.5rem; right: -2rem; left: auto; opacity: 0.8; }
+  .circle-2 { width: 3.5rem; top: 4%; left: 8%; right: auto; opacity: 0.18; }
+  .circle-3 { width: 3rem; top: 28%; right: 6%; left: auto; bottom: auto; opacity: 0.16; }
+  .circle-4 { width: 6rem; top: 48%; left: -2.5rem; right: auto; bottom: auto; opacity: 0.2; }
+  .circle-5 { width: 2.75rem; top: 64%; right: 10%; left: auto; opacity: 0.4; }
+  .circle-6 { width: 5rem; top: 78%; left: 6%; opacity: 0.2; }
+  .circle-7 { width: 3.5rem; bottom: -1rem; right: 18%; left: auto; opacity: 0.16; }
 }
 
 @media (prefers-reduced-motion: reduce) {

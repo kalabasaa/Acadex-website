@@ -18,18 +18,6 @@
 </head>
 <body>
 
-  <!-- Shared blob shapes: one <path> per shape, reused everywhere with <use>.
-       Each place that draws a blob only sets its own size/colour/position/
-       rotation in CSS — the shape itself lives here, once. -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <defs>
-      <path id="blob-a" d="M100,15 C130,15 162,28 178,55 C194,82 190,118 172,145 C154,172 122,188 92,185 C62,182 34,163 20,136 C6,109 8,74 26,50 C44,26 70,15 100,15 Z"/>
-      <path id="blob-b" d="M95,10 C125,5 158,20 172,48 C186,76 184,112 164,138 C144,164 108,180 76,174 C44,168 18,144 10,112 C2,80 12,44 38,24 C52,13 70,13 95,10 Z"/>
-      <path id="blob-c" d="M60,30 C90,10 135,8 162,32 C189,56 196,98 180,130 C164,162 124,184 88,180 C52,176 20,150 12,116 C4,82 20,54 60,30 Z"/>
-      <path id="blob-d" d="M100,30 C128,30 152,52 158,80 C164,108 150,138 124,154 C98,170 66,170 42,152 C18,134 8,104 16,76 C24,48 50,30 72,30 C78,30 90,30 100,30 Z"/>
-    </defs>
-  </svg>
-
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="site-header">
@@ -55,14 +43,14 @@
 
     <!-- HERO -->
     <section class="hero" id="top">
-      <!-- decorative blobs, varied shapes/sizes/shades of blue -->
-      <svg class="blob blob-1" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-a"/></svg>
-      <svg class="blob blob-2" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-b"/></svg>
-      <svg class="blob blob-7" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-c"/></svg>
-      <svg class="blob blob-8" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-d"/></svg>
-      <svg class="blob blob-9" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-a"/></svg>
-      <svg class="circle-accent circle-1" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48"/></svg>
-      <svg class="circle-accent circle-2" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48"/></svg>
+      <!-- decorative circles — perfect circles only, several sizes/shades of blue -->
+      <span class="circle circle-1" aria-hidden="true"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="100"/></svg></span>
+      <span class="circle circle-2" aria-hidden="true"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="100"/></svg></span>
+      <span class="circle circle-3" aria-hidden="true"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="100"/></svg></span>
+      <span class="circle circle-4" aria-hidden="true"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="100"/></svg></span>
+      <span class="circle circle-5" aria-hidden="true"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="100"/></svg></span>
+      <span class="circle circle-6" aria-hidden="true"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="100"/></svg></span>
+      <span class="circle circle-7" aria-hidden="true"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="100"/></svg></span>
       <span class="dots" aria-hidden="true"></span>
 
       <div class="wrap hero-grid">
@@ -80,7 +68,7 @@
         </div>
 
         <div class="hero-art">
-          <!-- Phone frame: drop a real screenshot in assets/screens/hero.png -->
+          <!-- Phone frame: drop a real screenshot in assets/screens/hero.jpg -->
           <div class="phone-frame img-frame">
             <img src="assets/screens/hero.jpg" alt="Acadex home screen on a phone" loading="eager">
             <div class="placeholder" aria-hidden="true">
@@ -94,17 +82,17 @@
 
     <!-- PROMO BANNER -->
     <section class="promo">
-      <span class="promo-texture" aria-hidden="true"></span>
+      <span class="texture-layer" aria-hidden="true"></span>
       <div class="wrap promo-row">
         <div>
           <p class="promo-label">Free · Offline · Open source</p>
           <h2>One app, your whole school week sorted.</h2>
         </div>
-        <a class="btn btn-light" href="#download">Get Acadex</a>
+        <a class="btn btn-light" href="#download">Get Acadex </a>
       </div>
     </section>
 
-    <!-- FEATURES -->
+    <!-- FEATURES (solid background, no texture) -->
     <section class="section" id="features">
       <div class="wrap">
         <div class="section-head">
@@ -146,15 +134,12 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
+    <!-- ABOUT (solid background, no texture) -->
     <section class="section band-soft" id="about">
-      <svg class="blob blob-3" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-b"/></svg>
-      <svg class="blob blob-5" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-c"/></svg>
-      <svg class="blob blob-6" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-d"/></svg>
-      <svg class="blob blob-10" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-a"/></svg>
-      <svg class="circle-accent about-circle-1" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48"/></svg>
-      <svg class="circle-accent about-circle-2" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48"/></svg>
-      <svg class="circle-accent about-circle-3" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48"/></svg>
+      <span class="circle circle-8" aria-hidden="true"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="99"/></svg></span>
+      <span class="circle circle-9" aria-hidden="true"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="99"/></svg></span>
+      <span class="circle circle-10" aria-hidden="true"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="99"/></svg></span>
+      <span class="circle circle-11" aria-hidden="true"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="100"/></svg></span>
 
       <div class="wrap about-grid">
         <div class="about-frame img-frame">
@@ -177,17 +162,19 @@
       </div>
     </section>
 
-    <!-- DOWNLOAD -->
-    <section class="section" id="download">
+    <!-- DOWNLOAD (keeps the lighter texture) -->
+    <section class="section band-soft" id="download">
+      <span class="texture-layer" aria-hidden="true"></span>
       <div class="wrap download-grid">
         <div>
           <p class="kicker">Download</p>
           <h2>Get Acadex v2.1</h2>
           <p>Hey there! Thanks for checking out Acadex! We're glad to have you here. If you're ready to give it a try, follow the installation steps below to get started on your Android device.</p>
           <p>This update brings new features, improvements, and a smoother experience. Acadex is still growing, so you might run into a few things that need polishing. Your feedback is always welcome!</p>
-          <!-- When you have a direct link to the APK file, put it in this href. -->
-          <a class="btn btn-primary" href="https://github.com/kalabasaa/Acadex/releases/latest" rel="noopener">Download acadex-v2.1.apk</a>
-          <p class="fine">The button opens the latest release on GitHub. Download <strong>acadex-v2.1.apk</strong> from its Assets section.</p>
+          <!-- Put acadex-v2.1.apk in assets/downloads/ — this link downloads
+               that file directly instead of opening GitHub. -->
+          <a class="btn btn-primary" href="assets/downloads/acadex-v2.1.apk" download="acadex-v2.1.apk">Download acadex-v2.1.apk</a>
+          <p class="fine">Downloads <strong>acadex-v2.1.apk</strong> straight to your device.</p>
         </div>
         <div class="whats-new">
           <h3>What's new in v2.1</h3>
@@ -205,23 +192,18 @@
       </div>
     </section>
 
-    <!-- INSTALL STEPS -->
+    <!-- INSTALL STEPS (solid background, no texture) -->
     <section class="section band-soft" id="install">
-      <span class="soft-texture" aria-hidden="true"></span>
       <div class="wrap narrow">
         <div class="section-head">
           <p class="kicker">Install</p>
           <h2>How to install</h2>
         </div>
-        <p class="section-intro">Six steps on your Android phone.</p>
+        <p class="section-intro">Five steps on your Android phone.</p>
         <ol class="steps">
           <li>
-            <h3>Open the Assets section</h3>
-            <p>Tap the download button above. On the GitHub release page, scroll down to <strong>Assets</strong>.</p>
-          </li>
-          <li>
-            <h3>Download the APK</h3>
-            <p>Tap <strong>acadex-v2.1.apk</strong>. If your browser warns that this type of file can be harmful, choose to keep it.</p>
+            <h3>Tap the download button</h3>
+            <p>Tap <strong>Download acadex-v2.1.apk</strong> above. If your browser warns that this type of file can be harmful, choose to keep it.</p>
           </li>
           <li>
             <h3>Open the downloaded file</h3>
@@ -244,8 +226,8 @@
       </div>
     </section>
 
-    <!-- DOCUMENTATION -->
-    <section class="section" id="docs">
+    <!-- DOCUMENTATION (solid background, no texture) -->
+    <section class="section band-soft" id="docs">
       <div class="wrap narrow">
         <div class="docs-head">
           <div class="section-head" style="margin-bottom:0">
@@ -370,11 +352,12 @@
 
   </main>
 
+  <!-- FOOTER: dark + darker pinned texture, same treatment as the promo banner -->
   <footer class="site-footer">
-    <svg class="blob blob-4" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-c"/></svg>
-    <svg class="blob blob-11" viewBox="0 0 200 200" aria-hidden="true"><use href="#blob-d"/></svg>
-    <svg class="circle-accent footer-circle-1" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48"/></svg>
-    <svg class="circle-accent footer-circle-2" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48"/></svg>
+    <span class="texture-layer" aria-hidden="true"></span>
+    <span class="circle circle-12" aria-hidden="true"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="100"/></svg></span>
+    <span class="circle circle-13" aria-hidden="true"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="99"/></svg></span>
+
     <div class="wrap">
       <p class="tagline"><span class="t1">Plan.</span> <span class="t2">Track.</span> <span class="t3">Succeed.</span></p>
       <p class="tagline-caption">A calmer way to get through the semester</p>

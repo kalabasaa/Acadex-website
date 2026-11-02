@@ -72,17 +72,14 @@
   var year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
-  /* ---------- parallax "window": hero & about circles/blobs stay put
-     while their section scrolls past, like looking through a window.
-     Each section clips its own shapes via overflow: hidden, so pinning
-     every shape to the same viewport offset (window.scrollY) is enough —
-     a shape only stays visible for as long as its section's box still
-     covers that spot on screen. ---------- */
-  var pinned = document.querySelectorAll(
-    ".hero .blob, .hero .circle-accent, " +
-    "#about .blob, #about .circle-accent, " +
-    ".site-footer .blob, .site-footer .circle-accent"
-  );
+  /* ---------- parallax "window": hero circles stay put while the hero
+     scrolls past, like looking through a window. The hero clips its own
+     shapes via overflow: hidden, so pinning every shape to the same
+     viewport offset (window.scrollY) is enough — a shape only stays
+     visible for as long as the hero's box still covers that spot on
+     screen. About and footer circles scroll normally with the page now
+     (no pin) — see the comments in style.css. ---------- */
+  var pinned = document.querySelectorAll(".hero .circle");
   if (pinned.length && !calm) {
     var pinTicking = false;
     function pinUpdate() {
